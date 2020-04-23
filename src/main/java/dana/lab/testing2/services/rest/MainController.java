@@ -6,11 +6,9 @@ import dana.lab.testing2.services.WebScrappingService;
 import dana.lab.testing2.services.rest.pojo.DownloadPojo;
 import dana.lab.testing2.services.rest.pojo.ShowPojo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin //(origins = "http://localhost:4200")
 @RequestMapping("/testing-lab2")
 @RestController
 public class MainController {
@@ -22,15 +20,20 @@ public class MainController {
         this.scrapper = service;
     }
 
-    @GetMapping("/download")
+    @PostMapping("/download")
     public ScrappedPage scrapIntoFile(@RequestBody DownloadPojo pojo) {
         WebScrapperState state = new WebScrapperState(pojo);
         return scrapper.scrap(state);//make file
     }
 
-    @GetMapping("/show")
-    public ScrappedPage scrapIntoView(@RequestBody ShowPojo pojo) {
+    @PostMapping("/show")
+    public String scrapIntoView(@RequestBody ShowPojo pojo) {
         WebScrapperState state = new WebScrapperState(pojo);
-        return scrapper.scrap(state);
+        return scrapper.scrap(state).getContent();
+    }
+
+    @GetMapping("/version")
+    public int getVersion() {
+        return 3;
     }
 }

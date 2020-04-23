@@ -27,7 +27,7 @@ public class MainControllerMockedTest {
                 "}";
         String documentPartType = "-text";
         String url = "http://www.example.org/";
-        mvc.perform(MockMvcRequestBuilders.get("/testing-lab2/show")
+        mvc.perform(MockMvcRequestBuilders.post("/testing-lab2/show")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.format(requestBody, documentPartType, url)))
                 .andExpect(status().isOk());
@@ -45,7 +45,7 @@ public class MainControllerMockedTest {
         String outputFileType = "-txt";
         String filename = "file.txt";
         String url = "http://www.example.org/";
-        mvc.perform(MockMvcRequestBuilders.get("/testing-lab2/download")
+        mvc.perform(MockMvcRequestBuilders.post("/testing-lab2/download")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.format(requestBody, documentPartType, outputFileType, filename, url)))
                 .andExpect(status().isOk());
