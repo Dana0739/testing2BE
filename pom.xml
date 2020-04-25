@@ -22,12 +22,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>org.springframework.boot</artifactId>
-					<groupId>spring-boot-starter-json</groupId>
-				</exclusion>
-			</exclusions>
+			<version>2.2.6.RELEASE</version>
 		</dependency>
 
 		<dependency>

@@ -3,7 +3,7 @@ package dana.lab.testing2.services.rest.pojo;
 import lombok.Data;
 
 @Data
-public class DownloadPojo {
+public class DownloadPojo { //todo this pojo should be rewritten
 
     private String documentPartType;
 

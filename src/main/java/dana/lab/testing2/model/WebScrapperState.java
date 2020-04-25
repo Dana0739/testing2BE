@@ -3,8 +3,6 @@ package dana.lab.testing2.model;
 import dana.lab.testing2.model.enums.DocumentPartTypes;
 import dana.lab.testing2.model.enums.OutputFileTypes;
 import dana.lab.testing2.model.enums.OutputTypes;
-import dana.lab.testing2.services.rest.pojo.DownloadPojo;
-import dana.lab.testing2.services.rest.pojo.ShowPojo;
 import lombok.Data;
 
 
@@ -29,19 +27,19 @@ public class WebScrapperState {
         this.url = url;
     }
 
-    public WebScrapperState(DownloadPojo pojo) {
-        this.documentPartType = DocumentPartTypes.getByTitle(pojo.getDocumentPartType());
+    public WebScrapperState(String documentPartType, String outputFileType, String filename, String url) {
+        this.documentPartType = DocumentPartTypes.getByTitle(documentPartType);
         this.outputType = OutputTypes.getByTitle("-f");
-        this.outputFileType = OutputFileTypes.getByTitle(pojo.getOutputFileType());
-        this.filename = pojo.getFilename();
-        this.url = pojo.getUrl();
+        this.outputFileType = OutputFileTypes.getByTitle(outputFileType);
+        this.filename = filename;
+        this.url = url;
     }
 
-    public WebScrapperState(ShowPojo pojo) {
-        this.documentPartType = DocumentPartTypes.getByTitle(pojo.getDocumentPartType());
+    public WebScrapperState(String documentPartType, String url) {
+        this.documentPartType = DocumentPartTypes.getByTitle(documentPartType);
         this.outputType = OutputTypes.getByTitle("-c");
         this.outputFileType = OutputFileTypes.getByTitle("");
         this.filename = "";
-        this.url = pojo.getUrl();
+        this.url = url;
     }
 }
