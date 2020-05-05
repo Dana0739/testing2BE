@@ -40,7 +40,7 @@ public class MainController {
         WebScrapperState state = new WebScrapperState(documentPartType, outputFileType, filename, url);
         ScrappedPage page = scrapper.scrap(state);
 
-        //todo delete all \n symbols and start and end " symbols
+        if (page.getContent().isEmpty()) return ResponseEntity.badRequest().build();
 
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(page.getContent());

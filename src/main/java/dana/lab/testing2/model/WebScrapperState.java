@@ -50,7 +50,6 @@ public class WebScrapperState {
             filename = url.replace("\\", "").replace("/", "");
         }
         String regex = ".*\\." + outputFileType.getType().replace(".", "") + "$";
-        if (filename.isEmpty()) filename = url;
         if (Pattern.matches(regex, filename)) {
             return filename;
         } else {
