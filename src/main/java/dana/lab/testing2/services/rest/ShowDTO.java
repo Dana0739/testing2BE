@@ -1,18 +1,18 @@
-package dana.lab.testing2.services.rest.pojo;
+package dana.lab.testing2.services.rest;
 
 import lombok.Data;
 
 @Data
-public class ShowPojo {
+public class ShowDTO {
 
     private String content;
 
     private String url;
 
-    public ShowPojo() {
+    public ShowDTO() {
     }
 
-    public ShowPojo(String content, String url) {
+    public ShowDTO(String content, String url) {
         this.content = content;
         this.url = url;
     }

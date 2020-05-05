@@ -5,6 +5,8 @@ import dana.lab.testing2.model.enums.OutputFileTypes;
 import dana.lab.testing2.model.enums.OutputTypes;
 import lombok.Data;
 
+import java.util.regex.Pattern;
+
 
 @Data
 public class WebScrapperState {
@@ -23,7 +25,7 @@ public class WebScrapperState {
         this.documentPartType = documentPartType;
         this.outputType = outputType;
         this.outputFileType = outputFileType;
-        this.filename = filename;
+        this.filename = parseFilename(filename, url, this.outputFileType);
         this.url = url;
     }
 
@@ -31,7 +33,7 @@ public class WebScrapperState {
         this.documentPartType = DocumentPartTypes.getByTitle(documentPartType);
         this.outputType = OutputTypes.getByTitle("-f");
         this.outputFileType = OutputFileTypes.getByTitle(outputFileType);
-        this.filename = filename;
+        this.filename = parseFilename(filename, url, this.outputFileType);
         this.url = url;
     }
 
@@ -41,5 +43,18 @@ public class WebScrapperState {
         this.outputFileType = OutputFileTypes.getByTitle("");
         this.filename = "";
         this.url = url;
+    }
+
+    private static String parseFilename(String filename, String url, OutputFileTypes outputFileType) {
+        if (filename == null) {
+            filename = url.replace("\\", "").replace("/", "");
+        }
+        String regex = ".*\\." + outputFileType.getType().replace(".", "") + "$";
+        if (filename.isEmpty()) filename = url;
+        if (Pattern.matches(regex, filename)) {
+            return filename;
+        } else {
+            return filename + outputFileType.getType();
+        }
     }
 }

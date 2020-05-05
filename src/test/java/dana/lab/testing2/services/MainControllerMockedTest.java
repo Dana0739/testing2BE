@@ -21,33 +21,15 @@ public class MainControllerMockedTest {
 
     @Test
     public void getShow_Test() throws Exception {
-        String requestBody = "{\n" +
-                "\"documentPartType\": \"%s\",\n" +
-                "\"url\": \"%s\"\n" +
-                "}";
-        String documentPartType = "-text";
-        String url = "http://www.example.org/";
-        mvc.perform(MockMvcRequestBuilders.post("/testing-lab2/show")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format(requestBody, documentPartType, url)))
+        mvc.perform(MockMvcRequestBuilders.get("/testing-lab2/show?documentPartType=-text&url=http://www.example.org/")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void getDownload_Test() throws Exception {
-        String requestBody = "{\n" +
-                "\"documentPartType\": \"%s\",\n" +
-                "\"outputFileType\": \"%s\",\n" +
-                "\"filename\": \"%s\",\n" +
-                "\"url\": \"%s\"\n" +
-                "}";
-        String documentPartType = "-text";
-        String outputFileType = "-txt";
-        String filename = "file.txt";
-        String url = "http://www.example.org/";
-        mvc.perform(MockMvcRequestBuilders.post("/testing-lab2/download")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(String.format(requestBody, documentPartType, outputFileType, filename, url)))
+        mvc.perform(MockMvcRequestBuilders.get("/testing-lab2/download?documentPartType=-all&outputFileType=-html&filename=&url=http://www.example.org/")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }

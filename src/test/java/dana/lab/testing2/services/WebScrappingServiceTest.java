@@ -66,7 +66,7 @@ public class WebScrappingServiceTest {
                         "   <p><a href=\"https://www.iana.org/domains/example\">More information...</a></p> \n" +
                         "  </div>  \n" +
                         " </body>\n" +
-                        "</html>"));
+                        "</html>", "http:www.example.org.txt"));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class WebScrappingServiceTest {
                         "            width: auto;\n" +
                         "        }\n" +
                         "    }\n" +
-                        "    </style>"));
+                        "    </style>", "http:www.example.org.txt"));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class WebScrappingServiceTest {
                         " <h1>Example Domain</h1> \n" +
                         " <p>This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.</p> \n" +
                         " <p><a href=\"https://www.iana.org/domains/example\">More information...</a></p> \n" +
-                        "</div>"));
+                        "</div>", "http:www.example.org.txt"));
     }
 
     @Test
@@ -120,7 +120,7 @@ public class WebScrappingServiceTest {
         assertEquals(scrapper.scrap(new WebScrapperState(DocumentPartTypes.TEXT, OutputTypes.CONSOLE, OutputFileTypes.TXT, null, "http://www.example.org/")),
                 new ScrappedPage("Example Domain Example Domain This domain is for use in " +
                         "illustrative examples in documents. You may use this domain in literature without prior " +
-                        "coordination or asking for permission. More information..."));
+                        "coordination or asking for permission. More information...", "http:www.example.org.txt"));
     }
 
     @Test
